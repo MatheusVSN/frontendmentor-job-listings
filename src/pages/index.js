@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
@@ -10,44 +10,28 @@ export default function Home() {
   const { data, error } = useSWR("/api/information-data", fetcher);
   const [query, setQuery] = useState([]);
 
-  if (error) return;
-  if (!data) return;
+  if (error) return <div>Error fetching data</div>;
+  if (!data) return <div>Loading...</div>;
 
-  const finalData = JSON.parse(data);
-  finalData.map((index) => {
-    index.taggedInformation = [
-      index.role,
-      index.level,
-      ...index.tools,
-      ...index.languages,
-    ];
-  });
+  const finalData = JSON.parse(data).map((item) => ({
+    ...item,
+    taggedInformation: [
+      item.role,
+      item.level,
+      ...item.tools,
+      ...item.languages,
+    ],
+  }));
 
-  const filteredJobs = useMemo(() => {
-    let finalSearch = [];
+  const filteredJobs = () => {
+    if (query.length === 0) return finalData;
 
-    for (let index = 0; index < finalData.length; index += 1) {
-      let presumedElement = finalData[index];
-      let taggedInfoArray = presumedElement.taggedInformation;
+    const filtered = finalData.filter((item) =>
+      query.every((q) => item.taggedInformation.includes(q))
+    );
 
-      for (let queryIndex = 0; queryIndex < query.length; queryIndex++) {
-        let searchString = query[queryIndex];
-        let Result = taggedInfoArray.includes(searchString);
-
-        if (Result) {
-          if (finalSearch.indexOf(presumedElement) > -1) continue;
-          finalSearch.push(presumedElement);
-          continue;
-        }
-
-        if (finalSearch.indexOf(presumedElement) > -1) {
-          finalSearch.splice(finalSearch.indexOf(presumedElement));
-        }
-      }
-    }
-
-    return query.length > 0 ? finalSearch : finalData;
-  }, [query]);
+    return filtered;
+  };
 
   function onFilterClicked(Filter) {
     if (query.includes(Filter)) return;
@@ -96,7 +80,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-y-8 min-[345px]:w-9/12 mb-8">
-          {filteredJobs.map((index) => {
+          {filteredJobs().map((index) => {
             return (
               <JobCardComponent
                 Information={index}
