@@ -10,8 +10,8 @@ export default function Home() {
   const { data, error } = useSWR("/api/information-data", fetcher);
   const [query, setQuery] = useState([]);
 
-  if (error) return <div>Error fetching data</div>;
-  if (!data) return <div>Loading...</div>;
+  if (error) return <h1>Error fetching data</h1>;
+  if (!data) return <h1>Loading...</h1>;
 
   const finalData = JSON.parse(data).map((item) => ({
     ...item,
