@@ -5,7 +5,10 @@ import NewCardComponent from "../cards/new"
 import SpecificTagComponent from "../cards/specific-tag"
 import ListInformationComponent from "../list/information"
 
-export default function JobCard({ Information, TaggedInformation }) {
+export default function JobCard({ Information, TaggedInformation, onClick }) {
+    function onMouseButton1Click(event) {
+        onClick(event)
+    }
 
     return (
         <>
@@ -34,7 +37,7 @@ export default function JobCard({ Information, TaggedInformation }) {
 
                     <ul className="list-none inline-flex flex-wrap gap-4">
                         {TaggedInformation.map((index) => {
-                            return <SpecificTagComponent Text={index} />
+                            return <SpecificTagComponent Text={index} onClick={onMouseButton1Click} />
                         })}
                     </ul>
                 </div>
@@ -62,7 +65,7 @@ export default function JobCard({ Information, TaggedInformation }) {
 
                 <ul className="list-none inline-flex flex-wrap gap-4 content-center self-center ml-auto">
                     {TaggedInformation.map((index) => {
-                        return <SpecificTagComponent Text={index} />
+                        return <SpecificTagComponent Text={index} onClick={onMouseButton1Click} />
                     })}
                 </ul>
             </div>
