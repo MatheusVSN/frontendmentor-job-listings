@@ -1,7 +1,7 @@
 # Job Listing Application
 
 ### Image
-![Desktop](preview/Desktop.png)
+![Desktop](preview/DesktopPreview.png)
 
 ### Preview
 https://frontendmentor-job-listings-beryl.vercel.app/
