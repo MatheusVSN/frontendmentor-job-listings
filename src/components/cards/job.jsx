@@ -26,9 +26,9 @@ export default function JobCard({ Information, TaggedInformation, onClick }) {
                         <p className="font-bold text-sm transition hover:text-desatured-dary-cyan hover:cursor-pointer">{Information.position}</p>
 
                         <ul className="list-none inline-flex gap-2">
-                            <ListInformationComponent Text={Information.postedAt} />
-                            <ListInformationComponent Text={Information.contract} />
-                            <ListInformationComponent Text={Information.location} />
+                            <li key={Information.postedAt}><ListInformationComponent Text={Information.postedAt} /></li>
+                            <li key={Information.contract}><ListInformationComponent Text={Information.contract} /></li>
+                            <li key={Information.location}><ListInformationComponent Text={Information.location} /></li>
                         </ul>
                     </div>
 
@@ -37,7 +37,8 @@ export default function JobCard({ Information, TaggedInformation, onClick }) {
 
                     <ul className="list-none inline-flex flex-wrap gap-4">
                         {TaggedInformation.map((index) => {
-                            return <SpecificTagComponent Text={index} onClick={onMouseButton1Click} />
+                            return (<li>
+                                <SpecificTagComponent Text={index} onClick={onMouseButton1Click} /> </li>)
                         })}
                     </ul>
                 </div>
@@ -57,15 +58,16 @@ export default function JobCard({ Information, TaggedInformation, onClick }) {
                     <p className="font-bold text-sm transition hover:text-desatured-dary-cyan hover:cursor-pointer">{Information.position}</p>
 
                     <ul className="list-none inline-flex gap-2">
-                        <ListInformationComponent Text={Information.postedAt} />
-                        <ListInformationComponent Text={Information.contract} />
-                        <ListInformationComponent Text={Information.location} />
+                        <li key={Information.postedAt}><ListInformationComponent Text={Information.postedAt} /></li>
+                        <li key={Information.contract}><ListInformationComponent Text={Information.contract} /></li>
+                        <li key={Information.location}><ListInformationComponent Text={Information.location} /></li>
                     </ul>
                 </div>
 
                 <ul className="list-none inline-flex flex-wrap gap-4 content-center self-center ml-auto">
                     {TaggedInformation.map((index) => {
-                        return <SpecificTagComponent Text={index} onClick={onMouseButton1Click} />
+                        return (<li>
+                            <SpecificTagComponent Text={index} onClick={onMouseButton1Click} /> </li>)
                     })}
                 </ul>
             </div>
