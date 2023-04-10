@@ -4,7 +4,7 @@
 ![Desktop](preview/DesktopPreview.png)
 
 ### Preview
-https://frontendmentor-job-listings-beryl.vercel.app/
+https://frontendmentor-job-listings-matheusvsn.vercel.app/
 
 ### Built with
 ![Next JS](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white)
