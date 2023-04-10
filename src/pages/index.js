@@ -1,6 +1,8 @@
 import { useState } from "react";
 import useSWR from "swr";
 
+import Head from "next/head";
+
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
 import FilterCardComponent from "../components/cards/filter";
@@ -54,9 +56,9 @@ export default function Home() {
 
   return (
     <>
-      <head>
+      <Head>
         <title>Job Listings App</title>
-      </head>
+      </Head>
 
       <main className="grid justify-items-center overflow-x-hidden">
         <div className="w-screen h-32 bg-desatured-dary-cyan bg-header-desktop max-sm:bg-header-mobile"></div>
