@@ -13,10 +13,10 @@ export default function JobCard({ Information, TaggedInformation, onClick }) {
     return (
         <>
             {/* Mobile Version */}
-            <div className="bg-white p-4 drop-shadow-xl rounded-lg lg:hidden">
+            <div className={`bg-white p-4 drop-shadow-xl rounded-lg lg:hidden ${Information.new && "border-l-4 border-l-desatured-dary-cyan"}`}>
                 <div className="relative bottom-10 flex flex-col gap-3">
                     <div>
-                        <Image src={Information.logo} width={40} height={40} />
+                        <Image src={Information.logo} width={40} height={40} alt={Information.company} />
                         <div className="flex items-center gap-2">
                             <p className="mr-4 text-desatured-dary-cyan font-bold">{Information.company}</p>
                             {Information.new == true && <NewCardComponent />}
@@ -44,8 +44,8 @@ export default function JobCard({ Information, TaggedInformation, onClick }) {
             </div>
 
             {/* Desktop Version */}
-            <div className="bg-white p-4 drop-shadow-xl rounded-lg max-lg:hidden flex gap-2">
-                <Image src={Information.logo} width={80} height={80} />
+            <div className={`bg-white p-4 drop-shadow-xl rounded-lg max-lg:hidden flex gap-2 ${Information.new && "border-l-4 border-l-desatured-dary-cyan"}`}>
+                <Image src={Information.logo} width={80} height={80} alt={Information.company} />
                 <div className="grid content-center gap-2">
                     <div className="flex self-baseline gap-2">
                         <p className="mr-2 text-desatured-dary-cyan font-bold">{Information.company}</p>
